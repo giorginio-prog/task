@@ -1,0 +1,258 @@
+<html>
+<head>
+<title>MainActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.myapplicationx0</span>
+
+<span class="s1">import android.graphics.Color</span>
+<span class="s1">import androidx.appcompat.app.AppCompatActivity</span>
+<span class="s1">import android.os.Bundle</span>
+<span class="s1">import android.view.View</span>
+<span class="s1">import android.widget.Button</span>
+<span class="s1">import android.widget.Toast</span>
+
+<span class="s0">class </span><span class="s1">MainActivity : AppCompatActivity()</span><span class="s0">, </span><span class="s1">View.OnClickListener {</span>
+
+
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button1: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button2: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button3: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button4: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button5: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button6: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button7: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button8: Button</span>
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">button9: Button</span>
+
+  <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">resetButton: Button</span>
+
+  <span class="s1">private </span><span class="s0">var </span><span class="s1">activePlayer = </span><span class="s2">1</span>
+
+  <span class="s1">private </span><span class="s0">var </span><span class="s1">firstPlayer = ArrayList&lt;Int&gt;()</span>
+  <span class="s1">private </span><span class="s0">var </span><span class="s1">secondPlayer = ArrayList&lt;Int&gt;()</span>
+  <span class="s1">private </span><span class="s0">var </span><span class="s1">playButtons = ArrayList&lt;Button&gt;()</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate(savedInstanceState: Bundle?) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span>
+        <span class="s1">setContentView(R.layout.activity_main)</span>
+      <span class="s1">init()</span>
+    <span class="s1">}</span>
+  <span class="s1">private </span><span class="s0">fun </span><span class="s1">init() {</span>
+    <span class="s1">button1 = findViewById(R.id.button1)</span>
+    <span class="s1">button2 = findViewById(R.id.button2)</span>
+    <span class="s1">button3 = findViewById(R.id.button3)</span>
+    <span class="s1">button4 = findViewById(R.id.button4)</span>
+    <span class="s1">button5 = findViewById(R.id.button5)</span>
+    <span class="s1">button6 = findViewById(R.id.button6)</span>
+    <span class="s1">button7 = findViewById(R.id.button7)</span>
+    <span class="s1">button8 = findViewById(R.id.button8)</span>
+    <span class="s1">button9 = findViewById(R.id.button9)</span>
+
+    <span class="s1">playButtons.addAll(listOf(button1</span><span class="s0">, </span><span class="s1">button2</span><span class="s0">, </span><span class="s1">button3</span><span class="s0">,</span><span class="s1">button4</span><span class="s0">,</span><span class="s1">button5</span><span class="s0">,</span><span class="s1">button6</span><span class="s0">,</span><span class="s1">button7</span><span class="s0">,</span><span class="s1">button8</span><span class="s0">,</span><span class="s1">button9))</span>
+
+    <span class="s1">resetButton = findViewById(R.id.resetButton)</span>
+
+
+
+
+    <span class="s1">button1.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button2.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button3.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button4.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button5.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button6.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button7.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button8.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">button9.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+    <span class="s1">resetButton.setOnClickListener(</span><span class="s0">this</span><span class="s1">)</span>
+
+
+    <span class="s1">setPrimaryBackground()</span>
+
+
+  <span class="s1">}</span>
+
+  <span class="s1">override </span><span class="s0">fun </span><span class="s1">onClick(clickedView: View?) {</span>
+
+    <span class="s0">if </span><span class="s1">(clickedView </span><span class="s0">is </span><span class="s1">Button) {</span>
+
+      <span class="s0">var </span><span class="s1">buttonNumber = </span><span class="s2">0</span>
+
+      <span class="s0">when </span><span class="s1">(clickedView.id) {</span>
+        <span class="s1">R.id.button1-&gt;buttonNumber = </span><span class="s2">1</span>
+        <span class="s1">R.id.button2-&gt;buttonNumber = </span><span class="s2">2</span>
+        <span class="s1">R.id.button3-&gt;buttonNumber = </span><span class="s2">3</span>
+        <span class="s1">R.id.button4-&gt;buttonNumber = </span><span class="s2">4</span>
+        <span class="s1">R.id.button5-&gt;buttonNumber = </span><span class="s2">5</span>
+        <span class="s1">R.id.button6-&gt;buttonNumber = </span><span class="s2">6</span>
+        <span class="s1">R.id.button7-&gt;buttonNumber = </span><span class="s2">7</span>
+        <span class="s1">R.id.button8-&gt;buttonNumber = </span><span class="s2">8</span>
+        <span class="s1">R.id.button9-&gt;buttonNumber = </span><span class="s2">9</span>
+        <span class="s1">R.id.resetButton-&gt;buttonNumber = </span><span class="s2">10</span>
+
+
+      <span class="s1">}</span>
+
+      <span class="s0">if</span><span class="s1">(buttonNumber == </span><span class="s2">10</span><span class="s1">){</span>
+        <span class="s0">return </span><span class="s1">reset()</span>
+      <span class="s1">}</span>
+
+
+      <span class="s0">if </span><span class="s1">(buttonNumber !=</span><span class="s2">0 </span><span class="s1">) {</span>
+        <span class="s1">playGame(buttonNumber</span><span class="s0">, </span><span class="s1">clickedView)</span>
+      <span class="s1">}</span>
+
+    <span class="s1">}</span>
+
+  <span class="s1">}</span>
+  <span class="s1">private </span><span class="s0">fun </span><span class="s1">enableDisableButtons(enable: Boolean){</span>
+    <span class="s1">playButtons.forEach { btn-&gt; btn.isEnabled = enable }</span>
+  <span class="s1">}</span>
+  <span class="s1">private </span><span class="s0">fun </span><span class="s1">setPrimaryBackground() {</span>
+    <span class="s1">playButtons.forEach { btn-&gt; btn.setBackgroundColor(Color.parseColor(</span><span class="s3">&quot;#FF6200EE&quot;</span><span class="s1">)) }</span>
+  <span class="s1">}</span>
+  <span class="s1">private </span><span class="s0">fun </span><span class="s1">setInitialText() {</span>
+    <span class="s1">playButtons.forEach { btn-&gt; btn.text = </span><span class="s3">&quot;&quot; </span><span class="s1">}</span>
+  <span class="s1">}</span>
+
+  <span class="s1">private </span><span class="s0">fun </span><span class="s1">reset() {</span>
+    <span class="s1">enableDisableButtons(</span><span class="s0">true</span><span class="s1">)</span>
+    <span class="s1">setPrimaryBackground()</span>
+    <span class="s1">setInitialText()</span>
+    <span class="s1">firstPlayer.clear()</span><span class="s0">;</span>
+    <span class="s1">secondPlayer.clear()</span><span class="s0">;</span>
+    <span class="s1">activePlayer = </span><span class="s2">1</span><span class="s0">;</span>
+
+  <span class="s1">}</span>
+
+  <span class="s1">private </span><span class="s0">fun </span><span class="s1">playGame(buttonNumber: Int</span><span class="s0">, </span><span class="s1">clickedView: Button) {</span>
+    <span class="s0">if </span><span class="s1">(activePlayer == </span><span class="s2">1</span><span class="s1">) {</span>
+      <span class="s1">clickedView.text = </span><span class="s3">&quot;X&quot;</span>
+      <span class="s1">clickedView.setBackgroundColor(Color.RED)</span>
+      <span class="s1">firstPlayer.add(buttonNumber)</span>
+      <span class="s1">activePlayer = </span><span class="s2">2</span>
+
+
+
+
+
+    <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+      <span class="s1">clickedView.text = </span><span class="s3">&quot;0&quot;</span>
+      <span class="s1">clickedView.setBackgroundColor(Color.BLUE)</span>
+      <span class="s1">secondPlayer.add(buttonNumber)</span>
+      <span class="s1">activePlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+
+    <span class="s1">clickedView.isEnabled= </span><span class="s0">false</span>
+    <span class="s1">check()</span>
+
+  <span class="s1">}</span>
+
+
+  <span class="s1">private </span><span class="s0">fun </span><span class="s1">check() {</span>
+    <span class="s0">var </span><span class="s1">winnerPlayer = </span><span class="s2">0</span>
+
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">1</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">2</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">3</span><span class="s1">)) {</span>
+        <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">1</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">2</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">3</span><span class="s1">)) {</span>
+        <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">4</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">6</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">4</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">6</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">7</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">8</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">9</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">7</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">8</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">9</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">1</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">4</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">7</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">1</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">4</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">7</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">2</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">8</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">2</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">8</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">3</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">6</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">9</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">3</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">6</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">9</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">1</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">9</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">1</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">9</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(firstPlayer.contains(</span><span class="s2">3</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; firstPlayer.contains(</span><span class="s2">7</span><span class="s1">)) {</span>
+      <span class="s1">winnerPlayer = </span><span class="s2">1</span>
+
+    <span class="s1">}</span>
+    <span class="s0">if </span><span class="s1">(secondPlayer.contains(</span><span class="s2">3</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">5</span><span class="s1">) &amp;&amp; secondPlayer.contains(</span><span class="s2">7</span><span class="s1">)) {</span>
+
+      <span class="s1">winnerPlayer = </span><span class="s2">2</span>
+
+    <span class="s1">}</span>
+
+    <span class="s0">if </span><span class="s1">(winnerPlayer != </span><span class="s2">0</span><span class="s1">) {</span>
+      <span class="s1">enableDisableButtons(</span><span class="s0">false</span><span class="s1">)</span>
+      <span class="s0">if </span><span class="s1">(winnerPlayer == </span><span class="s2">1</span><span class="s1">) {</span>
+        <span class="s1">Toast.makeText(</span><span class="s0">this, </span><span class="s3">&quot;X wins!&quot;</span><span class="s0">, </span><span class="s1">Toast.LENGTH_LONG).show()</span>
+      <span class="s1">}</span><span class="s0">else </span><span class="s1">{</span>
+        <span class="s1">Toast.makeText(</span><span class="s0">this, </span><span class="s3">&quot;0 wins!&quot;</span><span class="s0">, </span><span class="s1">Toast.LENGTH_LONG).show()</span>
+
+      <span class="s1">}</span>
+
+    <span class="s1">}</span>
+
+
+  <span class="s1">}</span>
+
+
+
+
+
+<span class="s1">}</span>
+
+
+</pre>
+</body>
+</html>
